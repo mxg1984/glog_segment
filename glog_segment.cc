@@ -17,6 +17,7 @@ void GlogSegment::InitLogging() {
 }
 
 void GlogSegment::RecreateLog() {
+  CHECK(!argv0_.empty()) << "must initialize argv[0] before using glog";
   std::unique_lock<std::mutex> lock(mutex_);
   if (initialized_) {
     google::ShutdownGoogleLogging();
